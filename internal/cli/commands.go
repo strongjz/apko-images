@@ -17,6 +17,8 @@ package cli
 import (
 	cranecmd "github.com/google/go-containerregistry/cmd/crane/cmd"
 	"github.com/spf13/cobra"
+	"github.com/spf13/cobra/doc"
+	"log"
 	"sigs.k8s.io/release-utils/version"
 )
 
@@ -33,5 +35,9 @@ func New() *cobra.Command {
 	cmd.AddCommand(showConfig())
 	cmd.AddCommand(publish())
 	cmd.AddCommand(version.Version())
+	err := doc.GenMarkdownTree(cmd, "./docs/")
+	if err != nil {
+		log.Fatal(err)
+	}
 	return cmd
 }

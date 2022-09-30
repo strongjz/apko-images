@@ -17,6 +17,8 @@ package cli
 import (
 	"context"
 	"fmt"
+	"github.com/spf13/cobra/doc"
+	"log"
 	"os"
 	"runtime"
 
@@ -57,7 +59,10 @@ func buildMinirootFS() *cobra.Command {
 	cmd.Flags().StringVar(&buildDate, "build-date", "", "date used for the timestamps of the files inside the image")
 	cmd.Flags().StringVar(&buildArch, "build-arch", runtime.GOARCH, "architecture to build for -- default is Go runtime architecture")
 	cmd.Flags().StringVar(&sbomPath, "sbom-path", "", "generate an SBOM")
-
+	err := doc.GenMarkdownTree(cmd, "./docs/")
+	if err != nil {
+		log.Fatal(err)
+	}
 	return cmd
 }
 

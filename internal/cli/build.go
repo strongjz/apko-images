@@ -17,6 +17,7 @@ package cli
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -27,6 +28,7 @@ import (
 	"chainguard.dev/apko/pkg/build/oci"
 	"chainguard.dev/apko/pkg/build/types"
 	"chainguard.dev/apko/pkg/sbom"
+	"github.com/spf13/cobra/doc"
 )
 
 func buildCmd() *cobra.Command {
@@ -98,6 +100,10 @@ bill of materials) describing the image contents.
 	cmd.Flags().StringSliceVar(&sbomFormats, "sbom-formats", sbom.DefaultOptions.Formats, "SBOM formats to output")
 	cmd.Flags().StringSliceVarP(&extraRepos, "repository-append", "r", []string{}, "path to extra repositories to include")
 
+	err := doc.GenMarkdownTree(cmd, "./docs/")
+	if err != nil {
+		log.Fatal(err)
+	}
 	return cmd
 }
 

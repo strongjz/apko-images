@@ -18,6 +18,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/spf13/cobra/doc"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -51,7 +53,10 @@ The derived configuration is rendered in YAML.
 
 	cmd.Flags().StringSliceVarP(&extraKeys, "keyring-append", "k", []string{}, "path to extra keys to include in the keyring")
 	cmd.Flags().StringSliceVarP(&extraRepos, "repository-append", "r", []string{}, "path to extra repositories to include")
-
+	err := doc.GenMarkdownTree(cmd, "./docs/")
+	if err != nil {
+		log.Fatal(err)
+	}
 	return cmd
 }
 

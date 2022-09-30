@@ -17,6 +17,8 @@ package cli
 import (
 	"context"
 	"fmt"
+	"github.com/spf13/cobra/doc"
+	"log"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -108,7 +110,10 @@ in a keychain.`,
 	cmd.Flags().StringSliceVar(&sbomFormats, "sbom-formats", sbom.DefaultOptions.Formats, "SBOM formats to output")
 	cmd.Flags().StringSliceVarP(&extraRepos, "repository-append", "r", []string{}, "path to extra repositories to include")
 	cmd.Flags().StringSliceVar(&rawAnnotations, "annotations", []string{}, "OCI annotations to add. Separate with colon (key:value)")
-
+	err := doc.GenMarkdownTree(cmd, "./docs/")
+	if err != nil {
+		log.Fatal(err)
+	}
 	return cmd
 }
 
