@@ -22,7 +22,7 @@ jobs:
           make apko
           ./apko version
 
-      - uses: goreleaser/goreleaser-action@ff11ca24a9b39f2d36796d1fbd7a4e39c182630a # v2.8.1
+      - uses: goreleaser/goreleaser-action@8f67e590f2d095516493f017008adc464e63adb1 # v2.8.1
         with:
           version: latest
           install-only: true
