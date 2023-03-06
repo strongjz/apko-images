@@ -30,7 +30,7 @@ jobs:
 
     - uses: imjasonh/setup-crane@v0.2
 
-    - uses: sigstore/cosign-installer@f3c664df7af409cb4873aa5068053ba9d61a57b6 # v2.3.0
+    - uses: sigstore/cosign-installer@c3667d99424e7e6047999fb6246c0da843953c65 # v2.3.0
 
     - uses: chainguard-dev/actions/setup-kind@main
       with:
